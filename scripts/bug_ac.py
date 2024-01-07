@@ -10,7 +10,8 @@ class ActionClient:
         self.client = actionlib.SimpleActionClient('reaching_goal', assignment_2_2023.msg.PlanningAction)
         self.client.wait_for_server()
 
-    def send_pose_goal(self, x, y):
+    def send_goal(self, x, y):
+        # Construction goal message
         goal = assignment_2_2023.msg.PlanningGoal()
         goal.target_pose.header.stamp = rospy.Time.now()
         goal.target_pose.header.frame_id = "Rover"
@@ -26,6 +27,22 @@ class ActionClient:
         self.client.send_goal(goal)
         rospy.loginfo("Pose goal sent to the action server.")
 
+        # Possibility to cancel goal
+        timer = self.client.wait_for_result(rospy.Duration(30))
+
+        if timer == True:
+            state = self.client.get_result()
+            rospy.loginfo("Position reached"+str(state))
+
+        else:
+            rospy.loginfo("Would you like to cancel the goal?")
+            request = str(input("Please write 'y' or 'n' "))
+
+            if request == 'y':
+                self.client.cancel_goal()
+
+            elif request == 'n':
+                self.client.wait_for_result()
 
     def start_interface(self):
         while not rospy.is_shutdown():
@@ -33,9 +50,10 @@ class ActionClient:
                 x = float(input("Enter X coordinate: "))
                 y = float(input("Enter Y coordinate: "))
 
-                self.send_pose_goal(x, y)
+                self.send_goal(x, y)
             except ValueError:
                 rospy.logerr("Invalid input. Please provide valid numbers.")
+
 
 
 if __name__ == '__main__':
