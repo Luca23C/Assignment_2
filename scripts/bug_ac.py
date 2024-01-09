@@ -1,20 +1,33 @@
 #!/usr/bin/env python
 
 import rospy
+import time
 import actionlib
 import assignment_2_2023.msg
+from std_msgs.msg import String
 from assignment_2_2023.msg import Info
 from nav_msgs.msg import Odometry
 
 class ActionClient:
+
+    # Define global variable for analize the current status of the goal
+    target_status = None
+
     def __init__(self):
         rospy.init_node('bug_ac')
         self.client = actionlib.SimpleActionClient('reaching_goal', assignment_2_2023.msg.PlanningAction)
         self.client.wait_for_server()
 
+        # Define subscriber for checking the status of the goal
+        self.sub_stat = rospy.Subscriber('/reaching_goal/feedback', String, self.status_callback)
+
         # Define publisher and subscriber for custom message
         self.sub = rospy.Subscriber('/odom', Odometry, self.odom_callback)
         self.pub = rospy.Publisher('/custom_message', Info, queue_size=10)
+
+
+    def status_callback(self, stat):
+        self.target_status = stat.feedback.stat
 
   
     def odom_callback(self, odom_msg):
@@ -42,23 +55,31 @@ class ActionClient:
 
 
     def delete_goal(self):
-        print("\nIf you want to delete target, please enter 'y'.\nPress 'enter' to refresh terminal when robot reach the goal.")
-        request = str(input("\nDigit your choice: "))
         while True:
+            print("\nIf you want to delete target, please enter 'y'.\nPress 'enter' to refresh terminal when robot reach the goal.")
+            request = str(input("\nDigit your choice: "))
+
             timer = self.client.wait_for_result(rospy.Duration(1))
+            print(timer)
         
             if timer:
+                rospy.loginfo(self.target_status)
                 break
 
             elif request == 'y':
                 self.client.cancel_goal()
-                rospy.loginfo("Goal successfully deleted!")
+                time.sleep(1)                       # Useful for getting the correct status
+                rospy.loginfo(self.target_status)
                 break
+
+            else:
+                rospy.logerr("Invalid input. Please provide a correct input.")
 
 
     def start_interface(self):
         while not rospy.is_shutdown():
             try:
+                print("\nWelcome to user interface!\nHere you can choose the target position for the robot.\n")
                 x = float(input("Enter x coordinate: "))
                 y = float(input("Enter y coordinate: "))
 
