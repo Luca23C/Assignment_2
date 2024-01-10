@@ -3,7 +3,9 @@
 import rospy
 from assignment_2_2023.msg import *
 from assignment_2_2023.srv import Position, PositionResponse
-#from geometry_msgs.msg import PoseStamped
+
+x = 0
+y = 0
 
 def read_last_goal(goal):
     global x, y
@@ -11,6 +13,9 @@ def read_last_goal(goal):
     y = goal.goal.target_pose.pose.position.y
 
 def get_pose(req):
+    global x, y
+    req.x = x
+    req.y = y
     return PositionResponse(req.x, req.y)
 
 def position_server():
@@ -21,6 +26,4 @@ def position_server():
 
 
 if __name__=='__main__':
-
     position_server()
-    

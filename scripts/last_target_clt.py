@@ -12,7 +12,7 @@ def position_client():
     rospy.wait_for_service('/last_pose')
     response = client()
 
-    rospy.loginfo("Last goal coordinates - x: %f, y: %f", response.x, response.y)
+    rospy.loginfo("Last target coordinate are: x: %f, y: %f", response.x_res, response.y_res)
 
 
 if __name__=='__main__':

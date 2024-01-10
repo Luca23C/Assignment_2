@@ -2,6 +2,7 @@
 
 import rospy
 import time
+from pynput import keyboard
 import actionlib
 import assignment_2_2023.msg
 from std_msgs.msg import String
@@ -55,16 +56,31 @@ class ActionClient:
 
 
     def delete_goal(self):
-        while True:
-            print("\nIf you want to delete target, please enter 'y'.\nPress 'enter' to refresh terminal when robot reach the goal.")
-            request = str(input("\nDigit your choice: "))
+        print("\nIf you want to delete target, please press 'esc'.")
+        
+        with keyboard.Events() as events:
+            for event in events:
+                timer = self.client.wait_for_result(rospy.Duration(1))
+
+                if event.key == keyboard.Key.esc:
+                    self.client.cancel_goal()
+                    time.sleep(1)                       # Useful for getting the correct status
+                    rospy.loginfo(self.target_status)
+                    break
+                
+                elif timer:
+                    rospy.loginfo(self.target_status)
+                    break
+
+        """ while True:
+            #request = str(input("\nDigit your choice: "))
             timer = self.client.wait_for_result(rospy.Duration(1))
         
             if timer:
                 rospy.loginfo(self.target_status)
                 break
 
-            elif request == 'y':
+            elif key == 'y':    #request
                 self.client.cancel_goal()
                 time.sleep(1)                       # Useful for getting the correct status
                 rospy.loginfo(self.target_status)
@@ -72,7 +88,7 @@ class ActionClient:
 
             else:
                 rospy.logerr("Invalid input. Please provide a correct input.")
-
+ """
 
     def start_interface(self):
         while not rospy.is_shutdown():
