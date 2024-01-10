@@ -58,9 +58,7 @@ class ActionClient:
         while True:
             print("\nIf you want to delete target, please enter 'y'.\nPress 'enter' to refresh terminal when robot reach the goal.")
             request = str(input("\nDigit your choice: "))
-
             timer = self.client.wait_for_result(rospy.Duration(1))
-            print(timer)
         
             if timer:
                 rospy.loginfo(self.target_status)
