@@ -2,6 +2,8 @@
 
 import rospy
 import time
+import sys
+import termios
 from pynput import keyboard
 import actionlib
 import assignment_2_2023.msg
@@ -29,14 +31,11 @@ class ActionClient:
 
 
     def on_press(self, key):
-        #if key == keyboard.Key.esc:
-        if key.char == 'y':
+        if key == keyboard.Key.esc:
             self.target_cancelled = True
             return False  # stop listener
-
-        """ else:
-            rospy.logerr("Invalid input. Please if you want to delete target press 'esc'.")
- """
+        else:
+            rospy.logerr("Invalid input. If you want to delete target, please press 'esc'.")
 
     def status_callback(self, stat):
         self.target_status = stat.feedback.stat
@@ -67,26 +66,25 @@ class ActionClient:
 
 
     def delete_goal(self):
+        print("\nIf you want to delete target, please press 'esc'.")
         # Fuction for listening if key 'esc' is pressed
         listener = keyboard.Listener(on_press=self.on_press)
         listener.start()
 
-        print("\nIf you want to delete target, please press 'esc'.")
-
         while True:
+
             timer = self.client.wait_for_result(rospy.Duration(1))
         
             if timer:
                 # DA AGGIUNGERE DI KILLARE IL LISTENER NEL CASO IN CUI IL GOAL VENGA RAGGIUNTO
                 rospy.loginfo(self.target_status)
+                listener.stop()
                 self.target_cancelled = False
-                listener.stop                   # da verificare
                 break
 
             elif self.target_cancelled:
                 self.client.cancel_goal()
                 self.target_cancelled = False
-                listener.stop                     # da verificare
                 time.sleep(1)                       # Useful for getting the correct status
                 rospy.loginfo(self.target_status)
                 break
@@ -96,14 +94,15 @@ class ActionClient:
         while not rospy.is_shutdown():
             try:
                 time.sleep(1)
+                termios.tcflush(sys.stdin, termios.TCIOFLUSH)   # Updates buffer after deleting target
+
+                # Create new interface
+                print('\n\n######################################################################################')
                 print("\nWelcome to user interface!\nHere you can choose the target position for the robot.\n")
-                #x = float(input("Enter x coordinate: "))
-                x = input("Enter x coordinate: ")
-                print(x)
+                x = float(input("Enter x coordinate: "))
                 y = float(input("Enter y coordinate: "))
 
-                x = float(x) 
-
+                # Send coordinates for creating goal
                 self.create_goal(x, y)
 
             except ValueError:
