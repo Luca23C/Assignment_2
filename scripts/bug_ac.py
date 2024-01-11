@@ -29,12 +29,14 @@ class ActionClient:
 
 
     def on_press(self, key):
+        #if key == keyboard.Key.esc:
         if key.char == 'y':
             self.target_cancelled = True
             return False  # stop listener
-        else:
-            rospy.logerr("Invalid input. Please if you want to delete target press 'y'.")
 
+        """ else:
+            rospy.logerr("Invalid input. Please if you want to delete target press 'esc'.")
+ """
 
     def status_callback(self, stat):
         self.target_status = stat.feedback.stat
@@ -65,11 +67,11 @@ class ActionClient:
 
 
     def delete_goal(self):
-        # Fuction for listening if key 'y' is pressed
+        # Fuction for listening if key 'esc' is pressed
         listener = keyboard.Listener(on_press=self.on_press)
         listener.start()
 
-        print("\nIf you want to delete target, please press 'y'.")
+        print("\nIf you want to delete target, please press 'esc'.")
 
         while True:
             timer = self.client.wait_for_result(rospy.Duration(1))
@@ -77,10 +79,14 @@ class ActionClient:
             if timer:
                 # DA AGGIUNGERE DI KILLARE IL LISTENER NEL CASO IN CUI IL GOAL VENGA RAGGIUNTO
                 rospy.loginfo(self.target_status)
+                self.target_cancelled = False
+                listener.stop                   # da verificare
                 break
 
             elif self.target_cancelled:
                 self.client.cancel_goal()
+                self.target_cancelled = False
+                listener.stop                     # da verificare
                 time.sleep(1)                       # Useful for getting the correct status
                 rospy.loginfo(self.target_status)
                 break
@@ -89,10 +95,14 @@ class ActionClient:
     def start_interface(self):
         while not rospy.is_shutdown():
             try:
-                time.sleep(4)   # Da modificare verificare se è possibile avere in output più nodi
+                time.sleep(1)
                 print("\nWelcome to user interface!\nHere you can choose the target position for the robot.\n")
-                x = float(input("Enter x coordinate: "))
+                #x = float(input("Enter x coordinate: "))
+                x = input("Enter x coordinate: ")
+                print(x)
                 y = float(input("Enter y coordinate: "))
+
+                x = float(x) 
 
                 self.create_goal(x, y)
 
