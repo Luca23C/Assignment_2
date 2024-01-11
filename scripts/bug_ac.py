@@ -75,6 +75,7 @@ class ActionClient:
             timer = self.client.wait_for_result(rospy.Duration(1))
         
             if timer:
+                # DA AGGIUNGERE DI KILLARE IL LISTENER NEL CASO IN CUI IL GOAL VENGA RAGGIUNTO
                 rospy.loginfo(self.target_status)
                 break
 
