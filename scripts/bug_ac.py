@@ -11,8 +11,9 @@ from nav_msgs.msg import Odometry
 
 class ActionClient:
 
-    # Define global variable for analize the current status of the goal
+    # Define global variable for analize the current status of the target
     target_status = None
+    target_cancelled = False
 
     def __init__(self):
         rospy.init_node('bug_ac')
@@ -25,6 +26,14 @@ class ActionClient:
         # Define publisher and subscriber for custom message
         self.sub = rospy.Subscriber('/odom', Odometry, self.odom_callback)
         self.pub = rospy.Publisher('/custom_message', Info, queue_size=10)
+
+
+    def on_press(self, key):
+        if key.char == 'y':
+            self.target_cancelled = True
+            return False  # stop listener
+        else:
+            rospy.logerr("Invalid input. Please if you want to delete target press 'y'.")
 
 
     def status_callback(self, stat):
@@ -56,43 +65,30 @@ class ActionClient:
 
 
     def delete_goal(self):
-        print("\nIf you want to delete target, please press 'esc'.")
-        
-        with keyboard.Events() as events:
-            for event in events:
-                timer = self.client.wait_for_result(rospy.Duration(1))
+        # Fuction for listening if key 'y' is pressed
+        listener = keyboard.Listener(on_press=self.on_press)
+        listener.start()
 
-                if event.key == keyboard.Key.esc:
-                    self.client.cancel_goal()
-                    time.sleep(1)                       # Useful for getting the correct status
-                    rospy.loginfo(self.target_status)
-                    break
-                
-                elif timer:
-                    rospy.loginfo(self.target_status)
-                    break
+        print("\nIf you want to delete target, please press 'y'.")
 
-        """ while True:
-            #request = str(input("\nDigit your choice: "))
+        while True:
             timer = self.client.wait_for_result(rospy.Duration(1))
         
             if timer:
                 rospy.loginfo(self.target_status)
                 break
 
-            elif key == 'y':    #request
+            elif self.target_cancelled:
                 self.client.cancel_goal()
                 time.sleep(1)                       # Useful for getting the correct status
                 rospy.loginfo(self.target_status)
                 break
 
-            else:
-                rospy.logerr("Invalid input. Please provide a correct input.")
- """
 
     def start_interface(self):
         while not rospy.is_shutdown():
             try:
+                time.sleep(4)   # Da modificare verificare se è possibile avere in output più nodi
                 print("\nWelcome to user interface!\nHere you can choose the target position for the robot.\n")
                 x = float(input("Enter x coordinate: "))
                 y = float(input("Enter y coordinate: "))
