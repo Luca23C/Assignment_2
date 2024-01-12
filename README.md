@@ -2,7 +2,7 @@
 
 The following picture shows the environment of this assignment:
 
----> inserire immagine
+<img src="https://github.com/Luca23C/Assignment_2/assets/97911589/10d43c3a-4280-4938-a9a7-1e94e7b9b02a" width="400" height="400">
 
 The aim of this work was to develop three different type of ROS node:
 -(A) A node which implements an action client, allowing the user to set a specific target with x and y coordinates, or to cancel it. Another request was to use the feedback/status of the action server to know when the target has been reached. Finally that node also publishes the robot position and velocity as a custom message (with a structure like: x, y, vel_x, vel_z), by relying on the values published on the topic called /odom.
@@ -20,12 +20,12 @@ For developing any kind of code, it is useful to start with Pseudocode or Flowch
 
 For this type of work, it was choosen the flowchart rapresentation for showing each process:
 
----> inserire immagine flowchart
+<img src="https://github.com/Luca23C/Assignment_2/assets/97911589/c06bd4c1-64d2-42fc-aafb-2f0d8fe4a048">
 
 Name of the file node: `bug_ac.py`
 In this node, an action client was developed. Upon activation, it displays an intuitive sort of interface on terminal, where the user can be enter the x and y target coordinates that the robot needs to reach.
 
----> mettere immagine interfaccia
+<img src="https://github.com/Luca23C/Assignment_2/assets/97911589/e7968d78-4e2a-4a67-94d9-ca505643cb3b">
 
 When the target message is created and sent to the action server, it is executed a specific function called `delete_goal()`. This particular function allow user to delete the target in case of unreachable position or something else. 
 In this function there is a while loop, which wait two kind of cases: robot reach the goal or user delete goal. In the first situation, it was retrieved the status of the goal ('reached' in this case), while in the second case it was used a build-in function called `keyboard.Listener()`, which listen if a specific key of the keyboard is pressed ('esc' key in this case). Therefore, if user press 'esc' key the target become successfully deleted and it was retrieved the status of the goal ('deleted' in this case). In both situation, the node come back to the initial user interface.
@@ -42,7 +42,7 @@ Inside the `info_navigation_srv.py` two Subscriber were employed to provide info
 Subsequently, these data was used to calculate the parameter to retrieve like: distance and average speed.
 To calculate the distance, it was applied the Euclidean distance between two point, in other words current position (x1, y1) and target position (x2, y2).
 
---> image of the formulae
+<img src="https://github.com/Luca23C/Assignment_2/assets/97911589/c5021cef-426a-4ace-b235-d81869a75b14">
 
 To compute the average speed, it was used the average window technique. In the Subscriber callback it was defined and filled an array called `velocity_array` about the linear velocity of the robot. Then, when the client call this type of service, within the callback service function it was computed the average speed by this algorithm:
 
