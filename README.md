@@ -48,7 +48,7 @@ Subsequently, these data was used to calculate the parameter to retrieve like: d
 To calculate the distance, it was applied the Euclidean distance between two point, in other words current position (x1, y1) and target position (x2, y2).
 
 
-**Euclidean distance formula:**
+**Euclidean distance formula:**  
 <img src="https://github.com/Luca23C/Assignment_2/assets/97911589/c5021cef-426a-4ace-b235-d81869a75b14">
 
 
