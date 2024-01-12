@@ -2,7 +2,7 @@
 
 The following picture shows the environment of this assignment:
 
-<img src="https://github.com/Luca23C/Assignment_2/assets/97911589/10d43c3a-4280-4938-a9a7-1e94e7b9b02a" width="400" height="400">
+<img src="https://github.com/Luca23C/Assignment_2/assets/97911589/10d43c3a-4280-4938-a9a7-1e94e7b9b02a" width="778" height="435">
 
 The aim of this work was to develop three different type of ROS node:
 -(A) A node which implements an action client, allowing the user to set a specific target with x and y coordinates, or to cancel it. Another request was to use the feedback/status of the action server to know when the target has been reached. Finally that node also publishes the robot position and velocity as a custom message (with a structure like: x, y, vel_x, vel_z), by relying on the values published on the topic called /odom.
