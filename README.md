@@ -20,7 +20,7 @@ For developing any kind of code, it is useful to start with Pseudocode or Flowch
 
 For this type of work, it was choosen the flowchart rapresentation for showing each process:
 
-<img src="https://github.com/Luca23C/Assignment_2/assets/97911589/c06bd4c1-64d2-42fc-aafb-2f0d8fe4a048" width="330" height="456>
+<img src="https://github.com/Luca23C/Assignment_2/assets/97911589/c06bd4c1-64d2-42fc-aafb-2f0d8fe4a048" width="330" height="456">
 
 Name of the file node: `bug_ac.py`
 In this node, an action client was developed. Upon activation, it displays an intuitive sort of interface on terminal, where the user can be enter the x and y target coordinates that the robot needs to reach.
