@@ -37,6 +37,7 @@ class ActionClient:
         else:
             rospy.logerr("Invalid input. If you want to delete target, please press 'esc'.")
 
+
     def status_callback(self, stat):
         self.target_status = stat.feedback.stat
 
@@ -76,7 +77,6 @@ class ActionClient:
             timer = self.client.wait_for_result(rospy.Duration(1))
         
             if timer:
-                # DA AGGIUNGERE DI KILLARE IL LISTENER NEL CASO IN CUI IL GOAL VENGA RAGGIUNTO
                 rospy.loginfo(self.target_status)
                 listener.stop()
                 self.target_cancelled = False

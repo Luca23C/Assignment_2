@@ -43,7 +43,7 @@ def nav_info_callback(req):
     dist = math.sqrt((goal_pose_x - real_pose_x)**2 + (goal_pose_y - real_pose_y)**2)
 
     # Calculate averege speed of the robot
-    window_size = 3
+    window_size = rospy.get_param("/avg_window")    # Get this parameter from launch file
     moving_avg = []
     count = 0
     while count < len(velocity_array) - window_size + 1:
