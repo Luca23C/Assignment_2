@@ -1,15 +1,5 @@
 # Assignment 2 - Robot Navigation
 
---> come eseguire la simulazione
-come scaricare la cartella
-come lanciare il programma
-quali servizi sono disponibili
-quali messaggi si possono lanciare (custom msg)
-
--->possible improvements
-problema del else nel sentire la tastiera , spiega e di che è commentato per questa ragione.
-
-#######
 The following picture shows the environment of this assignment:
 
 ---> inserire immagine
@@ -88,7 +78,23 @@ Finally it is possible to run this project by typing this line:
 $ roslaunch assignment_2_2023 assignment1.launch
 ```
 
-This last line execute the launch file of the project, where there are all nodes developed excluding the two client node: `last_target_clt.py` and `info_navigation_clt.py`.
-By using the services (B) and (C) you just need to open another terminal and execute our client node.
+This last line execute the launch file of the project, where there are all nodes developed excluding the two client node: `last_target_clt.py` and `info_navigation_clt.py`. By using the services (B) and (C) you just need to open another terminal and execute our client node.
 
-If you would like to 
+If you would like to know the last target sent, you can just type:
+```bash
+$ rosrun assignment_2_2023 last_target_clt.py
+```
+
+If you would like to know the distance of the robot from the target and the robot's average speed, you can just type:
+```bash
+$ rosrun assignment_2_2023 info_navigation_clt.py
+```
+
+Finally, if you wish to view the custom message for analyzing the current position of the robot as well as the linear and angular velocity of the robot, you can simply type:
+```bash
+$ rostopic echo /custom_message
+```
+
+## Possible improvement
+A first improvement is to attempt to resolve the issue related to the `on_press()` function (located into `bug_ac.py` node), where the else case has been commented out. This is commented out because, if the user employs the keyboard with another terminal, this function outputs the message `"Invalid input. If you want to delete the target, please press 'esc'"` to the main terminal, even if the intention is not to communicate with the main terminal to delete the goal. Therefore, the goal could be to isolate the main terminal that is waiting for the 'esc' key press to delete the goal from the other terminals.
+Another improvement could be to create a better design for the graphical interface.
