@@ -34,9 +34,9 @@ class ActionClient:
         if key == keyboard.Key.esc:
             self.target_cancelled = True
             return False  # stop listener
-        else:
+        """ else:
             rospy.logerr("Invalid input. If you want to delete target, please press 'esc'.")
-
+ """
 
     def status_callback(self, stat):
         self.target_status = stat.feedback.stat
