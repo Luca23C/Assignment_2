@@ -17,6 +17,7 @@ class ActionClient:
     target_status = None
     target_cancelled = False
 
+
     def __init__(self):
         rospy.init_node('bug_ac')
         self.client = actionlib.SimpleActionClient('reaching_goal', assignment_2_2023.msg.PlanningAction)
@@ -31,12 +32,15 @@ class ActionClient:
 
 
     def on_press(self, key):
+        # Check if is pressed 'esc' key on the keyboard 
         if key == keyboard.Key.esc:
             self.target_cancelled = True
             return False  # stop listener
+
         """ else:
             rospy.logerr("Invalid input. If you want to delete target, please press 'esc'.")
  """
+
 
     def status_callback(self, stat):
         self.target_status = stat.feedback.stat
@@ -74,11 +78,12 @@ class ActionClient:
 
         while True:
 
+            # Wait for the robot to reach the target
             timer = self.client.wait_for_result(rospy.Duration(1))
         
             if timer:
                 rospy.loginfo(self.target_status)
-                listener.stop()
+                listener.stop()                     # stop listener function
                 self.target_cancelled = False
                 break
 
