@@ -98,7 +98,7 @@ class ActionClient:
     def start_interface(self):
         while not rospy.is_shutdown():
             try:
-                time.sleep(1)
+                time.sleep(2)                       # To avoid to miss the interface insde the other system information line when the simulation starts
                 termios.tcflush(sys.stdin, termios.TCIOFLUSH)   # Updates buffer after deleting target
 
                 # Create new interface
