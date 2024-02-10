@@ -10,12 +10,18 @@ import assignment_2_2023.msg
 from std_msgs.msg import String
 from assignment_2_2023.msg import Info
 from nav_msgs.msg import Odometry
+from assignment_2_2023.srv import Position, PositionResponse
+from sensor_msgs.msg import LaserScan
+from assignment_2_2023.msg import ClosestObstacle
+
 
 class ActionClient:
 
     # Define global variable for analize the current status of the target
     target_status = None
     target_cancelled = False
+
+    start = True    # Useful for ex5 FAC SIMILE
 
 
     def __init__(self):
@@ -29,6 +35,13 @@ class ActionClient:
         # Define publisher and subscriber for custom message
         self.sub = rospy.Subscriber('/odom', Odometry, self.odom_callback)
         self.pub = rospy.Publisher('/custom_message', Info, queue_size=10)
+
+        # Define service client that show the previous target goal (FAC SIMILE ex5)
+        self.last_goal_client = rospy.ServiceProxy('/last_pose', Position)
+
+        # Reading closest obstacle within laserscan sensor (FAC SIMILE ex5)
+        self.laser_sub = rospy.Subscriber('/scan', LaserScan, self.laser_callback)
+        self.laser_pub = rospy.Publisher('/closest_obstacle', ClosestObstacle, queue_size=10)
 
 
     def on_press(self, key):
@@ -45,6 +58,17 @@ class ActionClient:
     def status_callback(self, stat):
         self.target_status = stat.feedback.stat
 
+
+    # FAC SIMILE ex5
+    def laser_callback(self, laser):
+        obs = ClosestObstacle()
+        distances = laser.ranges
+        close = min(distances)
+        obs.distance = close
+
+        self.laser_pub.publish(obs)
+
+        
   
     def odom_callback(self, odom_msg):
         # Fill the field of my custom message
@@ -65,6 +89,7 @@ class ActionClient:
 
         self.client.send_goal(goal)
         rospy.loginfo("Pose goal sent to the action server.")
+        self.start = False      # Useful for ex5 FAC SIMILE
 
         # Allow to delete goal
         self.delete_goal()
@@ -104,6 +129,12 @@ class ActionClient:
                 # Create new interface
                 print('\n\n######################################################################################')
                 print("\nWelcome to user interface!\nHere you can choose the target position for the robot.\n")
+
+                # FAC SIMILE ex5
+                response = self.last_goal_client()
+                if self.start != True:
+                    rospy.loginfo("Last target coordinate are: x: %f, y: %f", response.x_res, response.y_res)
+
                 x = float(input("Enter x coordinate: "))
                 y = float(input("Enter y coordinate: "))
 
