@@ -59,6 +59,7 @@ add_message_files(
    FILES
    Info.msg
    ClosestObstacle.msg
+   FeetPose.msg
  )
 
 ## Generate services in the 'srv' folder
@@ -66,6 +67,7 @@ add_service_files(
    FILES
    Position.srv
    Navigation.srv
+   DeleteGoal.srv
  )
 
 ## Generate actions in the 'action' folder

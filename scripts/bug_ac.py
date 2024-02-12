@@ -13,6 +13,8 @@ from nav_msgs.msg import Odometry
 from assignment_2_2023.srv import Position, PositionResponse
 from sensor_msgs.msg import LaserScan
 from assignment_2_2023.msg import ClosestObstacle
+from assignment_2_2023.msg import FeetPose
+from assignment_2_2023.srv import DeleteGoal, DeleteGoalResponse
 
 
 class ActionClient:
@@ -43,6 +45,16 @@ class ActionClient:
         self.laser_sub = rospy.Subscriber('/scan', LaserScan, self.laser_callback)
         self.laser_pub = rospy.Publisher('/closest_obstacle', ClosestObstacle, queue_size=10)
 
+        # Publisher for publish the robot's position in feet (EXAM test 1)
+        self.pub_feet = rospy.Publisher('/feet_pose', FeetPose, queue_size=10)
+
+        # Service server for deleting goal (EXAM test 1)
+        self.delete_goal_service = rospy.Service('/delete_goal', DeleteGoal, self.delete_goal_srv_clbk)
+
+        # Service client for deleting current goal (EXAM test 1)
+        self.delete_goal_client = rospy.ServiceProxy('/delete_goal', DeleteGoal)
+
+
 
     def on_press(self, key):
         # Check if is pressed 'esc' key on the keyboard 
@@ -68,6 +80,15 @@ class ActionClient:
 
         self.laser_pub.publish(obs)
 
+    
+    # EXAM test 1
+    def delete_goal_srv_clbk(self, req):
+        if req.pressed:
+            self.client.cancel_goal()
+            correctness = "Goal successfully deleted!"
+        
+        return DeleteGoalResponse(correctness)
+
         
   
     def odom_callback(self, odom_msg):
@@ -78,7 +99,16 @@ class ActionClient:
         info_msg.vel_x = odom_msg.twist.twist.linear.x
         info_msg.vel_z = odom_msg.twist.twist.angular.z
 
+        # Publish robot's position in feet
+        feet = FeetPose()
+        x_meter = odom_msg.pose.pose.position.x
+        y_meter = odom_msg.pose.pose.position.y
+
+        feet.x_feet = x_meter*3.28
+        feet.y_feet = y_meter*3.28
+
         self.pub.publish(info_msg)
+        self.pub_feet.publish(feet)
 
 
     def create_goal(self, x, y):
@@ -113,7 +143,12 @@ class ActionClient:
                 break
 
             elif self.target_cancelled:
-                self.client.cancel_goal()
+                #self.client.cancel_goal()
+
+                # Exam test 1
+                response = self.delete_goal_client(True)
+                rospy.loginfo(response.deleted)
+
                 self.target_cancelled = False
                 time.sleep(1)                       # Useful for getting the correct status
                 rospy.loginfo(self.target_status)
