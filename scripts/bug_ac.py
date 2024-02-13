@@ -15,6 +15,9 @@ from sensor_msgs.msg import LaserScan
 from assignment_2_2023.msg import ClosestObstacle
 from assignment_2_2023.msg import FeetPose
 from assignment_2_2023.srv import DeleteGoal, DeleteGoalResponse
+from assignment_2_2023.msg import AverageWin
+from std_srvs.srv import Empty
+from assignment_2_2023.srv import Coordinate_goal, Coordinate_goalResponse
 
 
 class ActionClient:
@@ -22,6 +25,7 @@ class ActionClient:
     # Define global variable for analize the current status of the target
     target_status = None
     target_cancelled = False
+    reset_env = False
 
     start = True    # Useful for ex5 FAC SIMILE
 
@@ -54,13 +58,30 @@ class ActionClient:
         # Service client for deleting current goal (EXAM test 1)
         self.delete_goal_client = rospy.ServiceProxy('/delete_goal', DeleteGoal)
 
+        # Publish the dimension of avg_window setted by user
+        self.pub_avg = rospy.Publisher("/avg_window", AverageWin, queue_size=1)
+
+        # Client for reset world
+        self.client_reset = rospy.ServiceProxy('/gazebo/reset_world', Empty)
+
+        # Client service get coordinate goal
+        self.client_get_coord = rospy.ServiceProxy("/get_coord", Coordinate_goal)
+        rospy.wait_for_service("/get_coord")
+
 
 
     def on_press(self, key):
         # Check if is pressed 'esc' key on the keyboard 
         if key == keyboard.Key.esc:
+            # Delete goal
             self.target_cancelled = True
-            return False  # stop listener
+            return False    # stop listener
+
+        # Check if is pressed 'q' key on the keyboard 
+        elif key.char == 'q':
+            # Reset environment
+            self.reset_env = True
+            return False    # stop listener
 
         """ else:
             rospy.logerr("Invalid input. If you want to delete target, please press 'esc'.")
@@ -119,6 +140,12 @@ class ActionClient:
 
         self.client.send_goal(goal)
         rospy.loginfo("Pose goal sent to the action server.")
+
+        # Call service for getting info about goal
+        response = self.client_get_coord()
+        rospy.loginfo("Goal coordinate are: x: %f, y: %f,  z: %f", response.x, response.y, response.z)
+
+
         self.start = False      # Useful for ex5 FAC SIMILE
 
         # Allow to delete goal
@@ -153,6 +180,12 @@ class ActionClient:
                 time.sleep(1)                       # Useful for getting the correct status
                 rospy.loginfo(self.target_status)
                 break
+            
+            # Reset environment if is pressed 'q'
+            elif self.reset_env:
+                self.client.cancel_goal()
+                self.client_reset.call()
+                break
 
 
     def start_interface(self):
@@ -172,6 +205,9 @@ class ActionClient:
 
                 x = float(input("Enter x coordinate: "))
                 y = float(input("Enter y coordinate: "))
+                avg_win = int(input("Enter the window size of average window: "))
+
+                self.pub_avg.publish(avg_win)
 
                 # Send coordinates for creating goal
                 self.create_goal(x, y)

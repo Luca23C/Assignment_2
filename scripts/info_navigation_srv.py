@@ -4,6 +4,8 @@ import rospy
 import math
 from assignment_2_2023.srv import Navigation, NavigationResponse
 from assignment_2_2023.msg import *
+from assignment_2_2023.msg import AverageWin
+
 
 # Global variables
 real_pose_x = 0
@@ -32,6 +34,11 @@ def read_goal(goal):
     goal_pose_y = goal.goal.target_pose.pose.position.y
 
 
+def cllbk_avg(avg):
+    global dim_avg_win
+    dim_avg_win = avg.value_avg_win
+
+
 def nav_info_callback(req):
     global real_pose_x, real_pose_y, real_linear_vel, real_angular_vel, goal_pose_x, goal_pose_y, velocity_array
     req.x = real_pose_x
@@ -43,7 +50,8 @@ def nav_info_callback(req):
     dist = math.sqrt((goal_pose_x - real_pose_x)**2 + (goal_pose_y - real_pose_y)**2)
 
     # Calculate averege speed of the robot
-    window_size = rospy.get_param("/avg_window")    # Get this parameter from launch file
+    #window_size = rospy.get_param("/avg_window")    # Get this parameter from launch file
+    window_size = dim_avg_win
     moving_avg = []
     count = 0
     while count < len(velocity_array) - window_size + 1:
@@ -61,6 +69,7 @@ def nav_server():
     rospy.init_node('info_nav_server')
     sub_1 = rospy.Subscriber('/custom_message', Info, read_info_nav)
     sub_2 = rospy.Subscriber('/reaching_goal/goal', assignment_2_2023.msg.PlanningActionGoal, read_goal)
+    sub_3 = rospy.Subscriber('/avg_window', AverageWin, cllbk_avg)
     serv = rospy.Service('/navigation_service', Navigation, nav_info_callback)
     rospy.spin()
 
