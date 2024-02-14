@@ -65,6 +65,7 @@ add_service_files(
    FILES
    Position.srv
    Navigation.srv
+   LeftSideObstacle.srv
  )
 
 ## Generate actions in the 'action' folder

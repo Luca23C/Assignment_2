@@ -10,12 +10,16 @@ import assignment_2_2023.msg
 from std_msgs.msg import String
 from assignment_2_2023.msg import Info
 from nav_msgs.msg import Odometry
+from assignment_2_2023.msg import PlanningActionFeedback
+
+
 
 class ActionClient:
 
     # Define global variable for analize the current status of the target
     target_status = None
     target_cancelled = False
+    feedback_goal = ""
 
 
     def __init__(self):
@@ -29,6 +33,10 @@ class ActionClient:
         # Define publisher and subscriber for custom message
         self.sub = rospy.Subscriber('/odom', Odometry, self.odom_callback)
         self.pub = rospy.Publisher('/custom_message', Info, queue_size=10)
+
+        # Subscriber feedback
+        self.sub_feed = rospy.Subscriber('/reaching_goal/feedback', PlanningActionFeedback, self.callFeed)
+
 
 
     def on_press(self, key):
@@ -44,6 +52,10 @@ class ActionClient:
 
     def status_callback(self, stat):
         self.target_status = stat.feedback.stat
+
+    
+    def callFeed(self, msg):
+        feedback_goal = msg.feedback.stat
 
   
     def odom_callback(self, odom_msg):
@@ -85,6 +97,7 @@ class ActionClient:
                 rospy.loginfo(self.target_status)
                 listener.stop()                     # stop listener function
                 self.target_cancelled = False
+                rospy.loginfo(self.feedback_goal)
                 break
 
             elif self.target_cancelled:
