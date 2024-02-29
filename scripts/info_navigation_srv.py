@@ -9,7 +9,7 @@ from assignment_2_2023.msg import *
 .. module:: assignment_2_2023
 
     :platform: Unix
-    :synopsis: Python module for the assignment_2_2023
+    :synopsis: ROS service node which compute the value of the average speed of the robot and its distance to the goal position
 
     :moduleauthor: Luca Cornia
 

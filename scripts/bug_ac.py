@@ -14,7 +14,7 @@ from nav_msgs.msg import Odometry
 """
 .. module:: assignment_2_2023
     :platform Unix
-    :synopsis: Python module for the assignment_2_2023
+    :synopsis: ROS action client that allow to start the user interface, set the desired goal to reach and it gives the possibility to delete that goal
 
 .. moduleauthor:: Luca Cornia
 

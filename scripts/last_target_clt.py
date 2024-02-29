@@ -7,7 +7,7 @@ from assignment_2_2023.srv import Position, PositionResponse
 .. module:: assignment_2_2023
 
     :platform: Unix
-    :synopsis: Python module for the assignment_2_2023
+    :synopsis: ROS client node that provide the last goal position setted
 
     :moduleauthor: Luca Cornia
 

@@ -7,7 +7,7 @@ from assignment_2_2023.srv import Navigation, NavigationResponse
 .. module:: assignment_2_2023
 
     :platform: Unix
-    :synopsis: Python module for the assignment_2_2023
+    :synopsis: ROS client node that provide the average speed of the robot and its distance to the goal position 
 
     :moduleauthor: Luca Cornia
 
