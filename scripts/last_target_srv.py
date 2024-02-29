@@ -17,6 +17,12 @@ Subscriber:
 
 Service:
     /last_pose
+
+Global variables:
+    x: float
+        Init of the x coordinate position of the goal
+    y: float
+        Init of the y coordinate position of the goal
 """
 
 

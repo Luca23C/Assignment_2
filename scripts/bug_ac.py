@@ -62,7 +62,6 @@ class ActionClient:
         Display on terminal the user interface which allow to set a target
     """
 
-    # Define global variable for analize the current status of the target
     target_status = None
     target_cancelled = False
 
@@ -72,10 +71,8 @@ class ActionClient:
         self.client = actionlib.SimpleActionClient('reaching_goal', assignment_2_2023.msg.PlanningAction)
         self.client.wait_for_server()
 
-        # Define subscriber for checking the status of the goal
         self.sub_stat = rospy.Subscriber('/reaching_goal/feedback', String, self.status_callback)
 
-        # Define publisher and subscriber for custom message
         self.sub = rospy.Subscriber('/odom', Odometry, self.odom_callback)
         self.pub = rospy.Publisher('/custom_message', Info, queue_size=10)
 
@@ -99,9 +96,6 @@ class ActionClient:
         if key == keyboard.Key.esc:
             self.target_cancelled = True
             return False
-
-        #else:
-            #rospy.logerr("Invalid input. If you want to delete target, please press 'esc'.")
 
 
 
@@ -162,7 +156,6 @@ class ActionClient:
         self.client.send_goal(goal)
         rospy.loginfo("Pose goal sent to the action server.")
 
-        # Allow to delete goal
         self.delete_goal()
 
 
@@ -186,19 +179,18 @@ class ActionClient:
 
         while True:
 
-            # Wait for the robot to reach the target
             timer = self.client.wait_for_result(rospy.Duration(1))
         
             if timer:
                 rospy.loginfo(self.target_status)
-                listener.stop()                     # stop listener function
+                listener.stop()
                 self.target_cancelled = False
                 break
 
             elif self.target_cancelled:
                 self.client.cancel_goal()
                 self.target_cancelled = False
-                time.sleep(1)                       # Useful for getting the correct status
+                time.sleep(1)
                 rospy.loginfo(self.target_status)
                 break
 
@@ -217,16 +209,14 @@ class ActionClient:
         """
         while not rospy.is_shutdown():
             try:
-                time.sleep(2)                       # To avoid to miss the interface insde the other system information line when the simulation starts
-                termios.tcflush(sys.stdin, termios.TCIOFLUSH)   # Updates buffer after deleting target
+                time.sleep(2)
+                termios.tcflush(sys.stdin, termios.TCIOFLUSH)
 
-                # Create new interface
                 print('\n\n######################################################################################')
                 print("\nWelcome to user interface!\nHere you can choose the target position for the robot.\n")
                 x = float(input("Enter x coordinate: "))
                 y = float(input("Enter y coordinate: "))
-
-                # Send coordinates for creating goal
+                
                 self.create_goal(x, y)
 
             except ValueError:
