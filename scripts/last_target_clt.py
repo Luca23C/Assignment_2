@@ -3,9 +3,32 @@
 import rospy
 from assignment_2_2023.srv import Position, PositionResponse
 
+"""
+.. module:: assignment_2_2023
+
+    :platform: Unix
+    :synopsis: Python module for the assignment_2_2023
+
+    :moduleauthor: Luca Cornia
+
+Client:
+    /last_pose
+"""
+
 
 def position_client():
+    """
+    Main of the client that when is executed call the service which retrieve the last goal selected
 
+    Parameters
+    ----------
+
+    response.x_res: float
+        Contain the information about the x coordinate of the last goal selected
+    response.y_res: float
+        Contain the information about the y coordinate of the last goal selected
+    """
+    
     rospy.init_node('last_target_position_client')
     client = rospy.ServiceProxy('/last_pose', Position)
 
