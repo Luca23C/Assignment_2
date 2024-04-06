@@ -1,0 +1,483 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Welcome to assignment_2_2023’s documentation! &mdash; assignment_2_2023 1.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=19f00094" />
+      <link rel="stylesheet" type="text/css" href="_static/graphviz.css?v=eafc0fe6" />
+
+  
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="_static/jquery.js?v=5d32c60e"></script>
+        <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js?v=359c27e9"></script>
+        <script src="_static/doctools.js?v=888ff710"></script>
+        <script src="_static/sphinx_highlight.js?v=4825356b"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="#" class="icon icon-home">
+            assignment_2_2023
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <!-- Local TOC -->
+              <div class="local-toc"><ul>
+<li><a class="reference internal" href="#">Welcome to assignment_2_2023’s documentation!</a></li>
+<li><a class="reference internal" href="#indices-and-tables">Indices and tables</a><ul>
+<li><a class="reference internal" href="#assignment-2-2023-documentation">assignment_2_2023 documentation!</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#module-scripts.bug_ac">bug_ac Module</a><ul>
+<li><a class="reference internal" href="#scripts.bug_ac.ActionClient"><code class="docutils literal notranslate"><span class="pre">ActionClient</span></code></a><ul>
+<li><a class="reference internal" href="#scripts.bug_ac.ActionClient.target_status"><code class="docutils literal notranslate"><span class="pre">ActionClient.target_status</span></code></a></li>
+<li><a class="reference internal" href="#scripts.bug_ac.ActionClient.target_cancelled"><code class="docutils literal notranslate"><span class="pre">ActionClient.target_cancelled</span></code></a></li>
+<li><a class="reference internal" href="#scripts.bug_ac.ActionClient.on_press"><code class="docutils literal notranslate"><span class="pre">ActionClient.on_press()</span></code></a></li>
+<li><a class="reference internal" href="#scripts.bug_ac.ActionClient.status_callback"><code class="docutils literal notranslate"><span class="pre">ActionClient.status_callback()</span></code></a></li>
+<li><a class="reference internal" href="#scripts.bug_ac.ActionClient.odom_callback"><code class="docutils literal notranslate"><span class="pre">ActionClient.odom_callback()</span></code></a></li>
+<li><a class="reference internal" href="#scripts.bug_ac.ActionClient.create_goal"><code class="docutils literal notranslate"><span class="pre">ActionClient.create_goal()</span></code></a></li>
+<li><a class="reference internal" href="#scripts.bug_ac.ActionClient.delete_goal"><code class="docutils literal notranslate"><span class="pre">ActionClient.delete_goal()</span></code></a></li>
+<li><a class="reference internal" href="#scripts.bug_ac.ActionClient.start_interface"><code class="docutils literal notranslate"><span class="pre">ActionClient.start_interface()</span></code></a></li>
+<li><a class="reference internal" href="#id0"><code class="docutils literal notranslate"><span class="pre">ActionClient.create_goal()</span></code></a></li>
+<li><a class="reference internal" href="#id1"><code class="docutils literal notranslate"><span class="pre">ActionClient.delete_goal()</span></code></a></li>
+<li><a class="reference internal" href="#id2"><code class="docutils literal notranslate"><span class="pre">ActionClient.odom_callback()</span></code></a></li>
+<li><a class="reference internal" href="#id3"><code class="docutils literal notranslate"><span class="pre">ActionClient.on_press()</span></code></a></li>
+<li><a class="reference internal" href="#id4"><code class="docutils literal notranslate"><span class="pre">ActionClient.start_interface()</span></code></a></li>
+<li><a class="reference internal" href="#id5"><code class="docutils literal notranslate"><span class="pre">ActionClient.status_callback()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a class="reference internal" href="#module-scripts.info_navigation_clt">info_navigation_clt Module</a><ul>
+<li><a class="reference internal" href="#scripts.info_navigation_clt.nav_client"><code class="docutils literal notranslate"><span class="pre">nav_client()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#module-scripts.info_navigation_srv">info_navigation_srv Module</a><ul>
+<li><a class="reference internal" href="#scripts.info_navigation_srv.nav_info_callback"><code class="docutils literal notranslate"><span class="pre">nav_info_callback()</span></code></a></li>
+<li><a class="reference internal" href="#scripts.info_navigation_srv.nav_server"><code class="docutils literal notranslate"><span class="pre">nav_server()</span></code></a></li>
+<li><a class="reference internal" href="#scripts.info_navigation_srv.read_goal"><code class="docutils literal notranslate"><span class="pre">read_goal()</span></code></a></li>
+<li><a class="reference internal" href="#scripts.info_navigation_srv.read_info_nav"><code class="docutils literal notranslate"><span class="pre">read_info_nav()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#module-scripts.last_target_clt">last_target_clt Module</a><ul>
+<li><a class="reference internal" href="#scripts.last_target_clt.position_client"><code class="docutils literal notranslate"><span class="pre">position_client()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#module-scripts.last_target_srv">last_target_srv Module</a><ul>
+<li><a class="reference internal" href="#scripts.last_target_srv.get_pose"><code class="docutils literal notranslate"><span class="pre">get_pose()</span></code></a></li>
+<li><a class="reference internal" href="#scripts.last_target_srv.position_server"><code class="docutils literal notranslate"><span class="pre">position_server()</span></code></a></li>
+<li><a class="reference internal" href="#scripts.last_target_srv.read_last_goal"><code class="docutils literal notranslate"><span class="pre">read_last_goal()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</div>
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="#">assignment_2_2023</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="#" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Welcome to assignment_2_2023’s documentation!</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/index.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="welcome-to-assignment-2-2023-s-documentation">
+<h1>Welcome to assignment_2_2023’s documentation!<a class="headerlink" href="#welcome-to-assignment-2-2023-s-documentation" title="Permalink to this heading"></a></h1>
+<div class="toctree-wrapper compound">
+</div>
+</section>
+<section id="indices-and-tables">
+<h1>Indices and tables<a class="headerlink" href="#indices-and-tables" title="Permalink to this heading"></a></h1>
+<ul class="simple">
+<li><p><a class="reference internal" href="genindex.html"><span class="std std-ref">Index</span></a></p></li>
+<li><p><a class="reference internal" href="py-modindex.html"><span class="std std-ref">Module Index</span></a></p></li>
+<li><p><a class="reference internal" href="search.html"><span class="std std-ref">Search Page</span></a></p></li>
+</ul>
+<section id="assignment-2-2023-documentation">
+<h2>assignment_2_2023 documentation!<a class="headerlink" href="#assignment-2-2023-documentation" title="Permalink to this heading"></a></h2>
+<p>This is the documentation of the assignment_2_2023 package!</p>
+</section>
+</section>
+<section id="module-scripts.bug_ac">
+<span id="bug-ac-module"></span><h1>bug_ac Module<a class="headerlink" href="#module-scripts.bug_ac" title="Permalink to this heading"></a></h1>
+<dl class="py class">
+<dt class="sig sig-object py" id="scripts.bug_ac.ActionClient">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">scripts.bug_ac.</span></span><span class="sig-name descname"><span class="pre">ActionClient</span></span><a class="reference internal" href="_modules/scripts/bug_ac.html#ActionClient"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#scripts.bug_ac.ActionClient" title="Permalink to this definition"></a></dt>
+<dd><p>A class used to achieve some goal for the robot</p>
+<p>…</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="scripts.bug_ac.ActionClient.target_status">
+<span class="sig-name descname"><span class="pre">target_status</span></span><a class="headerlink" href="#scripts.bug_ac.ActionClient.target_status" title="Permalink to this definition"></a></dt>
+<dd><p>A string to print on terminal the status of the robot when the target is reached or cancelled</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="scripts.bug_ac.ActionClient.target_cancelled">
+<span class="sig-name descname"><span class="pre">target_cancelled</span></span><a class="headerlink" href="#scripts.bug_ac.ActionClient.target_cancelled" title="Permalink to this definition"></a></dt>
+<dd><p>A variable used when the user press ‘esc’ button for deleting goal</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>bool</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="scripts.bug_ac.ActionClient.on_press">
+<span class="sig-name descname"><span class="pre">on_press</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">key</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/scripts/bug_ac.html#ActionClient.on_press"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#scripts.bug_ac.ActionClient.on_press" title="Permalink to this definition"></a></dt>
+<dd><p>Listen if the user has been pressed the ‘esc’ button on the keyboard</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="scripts.bug_ac.ActionClient.status_callback">
+<span class="sig-name descname"><span class="pre">status_callback</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">stat</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/scripts/bug_ac.html#ActionClient.status_callback"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#scripts.bug_ac.ActionClient.status_callback" title="Permalink to this definition"></a></dt>
+<dd><p>Subscribe from a topic /reaching_goal/feedback for analizing the current state of the robot</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="scripts.bug_ac.ActionClient.odom_callback">
+<span class="sig-name descname"><span class="pre">odom_callback</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">odom_msg</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/scripts/bug_ac.html#ActionClient.odom_callback"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#scripts.bug_ac.ActionClient.odom_callback" title="Permalink to this definition"></a></dt>
+<dd><p>Subscribe from a topic /odom for publishing a custom message on a topic called /custom_message</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="scripts.bug_ac.ActionClient.create_goal">
+<span class="sig-name descname"><span class="pre">create_goal</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/scripts/bug_ac.html#ActionClient.create_goal"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#scripts.bug_ac.ActionClient.create_goal" title="Permalink to this definition"></a></dt>
+<dd><p>Allow to create the goal message and send this to the action server</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="scripts.bug_ac.ActionClient.delete_goal">
+<span class="sig-name descname"><span class="pre">delete_goal</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/scripts/bug_ac.html#ActionClient.delete_goal"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#scripts.bug_ac.ActionClient.delete_goal" title="Permalink to this definition"></a></dt>
+<dd><p>Allow to delete the goal</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="scripts.bug_ac.ActionClient.start_interface">
+<span class="sig-name descname"><span class="pre">start_interface</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/scripts/bug_ac.html#ActionClient.start_interface"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#scripts.bug_ac.ActionClient.start_interface" title="Permalink to this definition"></a></dt>
+<dd><p>Display on terminal the user interface which allow to set a target</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="id0">
+<span class="sig-name descname"><span class="pre">create_goal</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/scripts/bug_ac.html#ActionClient.create_goal"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#id0" title="Permalink to this definition"></a></dt>
+<dd><p>Create and send to the action server the goal messsage and then that function call the delete_goal function</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>goal.target_pose.pose.position.x</strong> (<em>float</em>) – Assign the x coordinate chosen by the user</p></li>
+<li><p><strong>goal.target_pose.pose.position.y</strong> (<em>float</em>) – Assign the y coordinate chosen by the user</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="id1">
+<span class="sig-name descname"><span class="pre">delete_goal</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/scripts/bug_ac.html#ActionClient.delete_goal"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#id1" title="Permalink to this definition"></a></dt>
+<dd><p>Activate a listener function which is involved to literally listen if a particular key is pressed</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>timer</strong> (<em>bool</em>) – Get information about the result of a target previously sent</p></li>
+<li><p><strong>target_cancelled</strong> (<em>bool</em>) – Reset this variable to the initial configuration</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="id2">
+<span class="sig-name descname"><span class="pre">odom_callback</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">odom_msg</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/scripts/bug_ac.html#ActionClient.odom_callback"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#id2" title="Permalink to this definition"></a></dt>
+<dd><p>Get information about the /odom topic for filling the field of my custom message</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>info_msg.pose_x</strong> (<em>float</em>) – Storage the information about the x cartesian position of the robot</p></li>
+<li><p><strong>info_msg.pose_y</strong> (<em>float</em>) – Storage the information about the y cartesian position of the robot</p></li>
+<li><p><strong>info_msg.vel_x</strong> (<em>float</em>) – Storage the information about the linear velocity along x-axis of the robot</p></li>
+<li><p><strong>info_msg.vel_z</strong> (<em>float</em>) – Storage the information about the angular velocity around z-axis of the robot</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="id3">
+<span class="sig-name descname"><span class="pre">on_press</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">key</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/scripts/bug_ac.html#ActionClient.on_press"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#id3" title="Permalink to this definition"></a></dt>
+<dd><p>Check if is pressed ‘esc’ key on the keyboard</p>
+<section id="parameters">
+<h2>Parameters:<a class="headerlink" href="#parameters" title="Permalink to this heading"></a></h2>
+<dl class="simple">
+<dt>key: str</dt><dd><p>It rapresents all type of key pressed on the keyboard</p>
+</dd>
+<dt>target_cancelled: bool</dt><dd><p>Value setted true when the key pressed is equal to esc key</p>
+</dd>
+</dl>
+<dl class="field-list simple">
+<dt class="field-odd">rtype<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The return false allow to interrupt the keyboard listener</p>
+</dd>
+</dl>
+</section>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="id4">
+<span class="sig-name descname"><span class="pre">start_interface</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/scripts/bug_ac.html#ActionClient.start_interface"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#id4" title="Permalink to this definition"></a></dt>
+<dd><p>Start the user interface where it is possible to set the x and y coordinate of the target desired</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>x</strong> (<em>float</em>) – Storage the x coordinate chosen by the user</p></li>
+<li><p><strong>y</strong> (<em>float</em>) – Storage the y coordinate chose by the user</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="id5">
+<span class="sig-name descname"><span class="pre">status_callback</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">stat</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/scripts/bug_ac.html#ActionClient.status_callback"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#id5" title="Permalink to this definition"></a></dt>
+<dd><p>Useful for getting information about the status of the robot</p>
+<section id="parameter">
+<h2>Parameter<a class="headerlink" href="#parameter" title="Permalink to this heading"></a></h2>
+<dl class="simple">
+<dt>target_status: str</dt><dd><p>Storage the information about the current state of the robot</p>
+</dd>
+</dl>
+</section>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-scripts.info_navigation_clt">
+<span id="info-navigation-clt-module"></span><h1>info_navigation_clt Module<a class="headerlink" href="#module-scripts.info_navigation_clt" title="Permalink to this heading"></a></h1>
+<dl class="py function">
+<dt class="sig sig-object py" id="scripts.info_navigation_clt.nav_client">
+<span class="sig-prename descclassname"><span class="pre">scripts.info_navigation_clt.</span></span><span class="sig-name descname"><span class="pre">nav_client</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/scripts/info_navigation_clt.html#nav_client"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#scripts.info_navigation_clt.nav_client" title="Permalink to this definition"></a></dt>
+<dd><p>Main of the client that when called retrieve the information about the distance between the robot and the goal chosen as well as the average speed of the robot</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>response.distance</strong> (<em>float</em>) – Get the information of the distance between robot and goal</p></li>
+<li><p><strong>response.average_speed</strong> (<em>float</em>) – Get the information of the average speed of the robot</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+<section id="module-scripts.info_navigation_srv">
+<span id="info-navigation-srv-module"></span><h1>info_navigation_srv Module<a class="headerlink" href="#module-scripts.info_navigation_srv" title="Permalink to this heading"></a></h1>
+<dl class="py function">
+<dt class="sig sig-object py" id="scripts.info_navigation_srv.nav_info_callback">
+<span class="sig-prename descclassname"><span class="pre">scripts.info_navigation_srv.</span></span><span class="sig-name descname"><span class="pre">nav_info_callback</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">req</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/scripts/info_navigation_srv.html#nav_info_callback"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#scripts.info_navigation_srv.nav_info_callback" title="Permalink to this definition"></a></dt>
+<dd><p>Compute the distance between the robot and the goal as well as the average linear velocity of the robot</p>
+<section id="id6">
+<h2>Parameters:<a class="headerlink" href="#id6" title="Permalink to this heading"></a></h2>
+<dl class="simple">
+<dt>req.x: float</dt><dd><p>Storage the information of the current x coordinate of the robot position</p>
+</dd>
+<dt>req.y: float</dt><dd><p>Storage the information of the current y coordinate of the robot position</p>
+</dd>
+<dt>req.linear_vel_x: float</dt><dd><p>Storage the information of the linear velocity of the robot</p>
+</dd>
+<dt>req.angular_vel_z: float</dt><dd><p>Storage the information of the angular velocity of the robot</p>
+</dd>
+<dt>dist: float</dt><dd><p>Euclidean distance from target to actual robot position</p>
+</dd>
+<dt>window_size: int</dt><dd><p>Define the size of the window, because it has been used the average window technique. This parameter is retrieved from launch file</p>
+</dd>
+<dt>moving_avg: list of float</dt><dd><p>Storage the average velocity of a specific window</p>
+</dd>
+<dt>count: int</dt><dd><p>Useful for the average window loop technique</p>
+</dd>
+<dt>window: list of float</dt><dd><p>List of velocities recorded in a window</p>
+</dd>
+<dt>window_avg: float</dt><dd><p>Average value of the velocities in that specific window computed before</p>
+</dd>
+<dt>avg_speed: float</dt><dd><p>Get information about the total average speed of any window</p>
+</dd>
+</dl>
+</section>
+<section id="returns">
+<h2>Returns:<a class="headerlink" href="#returns" title="Permalink to this heading"></a></h2>
+<dl class="simple">
+<dt>dist: float</dt><dd><p>Euclidean distance from target to actual robot position</p>
+</dd>
+<dt>avg_speed: float</dt><dd><p>Average speed of the robot</p>
+</dd>
+</dl>
+</section>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="scripts.info_navigation_srv.nav_server">
+<span class="sig-prename descclassname"><span class="pre">scripts.info_navigation_srv.</span></span><span class="sig-name descname"><span class="pre">nav_server</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/scripts/info_navigation_srv.html#nav_server"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#scripts.info_navigation_srv.nav_server" title="Permalink to this definition"></a></dt>
+<dd><p>Main of my service. The goal is to get the information about the current position and velocity of the robot as well as the position of the goal.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="scripts.info_navigation_srv.read_goal">
+<span class="sig-prename descclassname"><span class="pre">scripts.info_navigation_srv.</span></span><span class="sig-name descname"><span class="pre">read_goal</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">goal</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/scripts/info_navigation_srv.html#read_goal"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#scripts.info_navigation_srv.read_goal" title="Permalink to this definition"></a></dt>
+<dd><p>Callback of the subscriber which subscribe the information of the goal chosen</p>
+<section id="id7">
+<h2>Parameters:<a class="headerlink" href="#id7" title="Permalink to this heading"></a></h2>
+<dl class="simple">
+<dt>goal_pose_x: float</dt><dd><p>Storage the x coordinate of the goal</p>
+</dd>
+<dt>goal_pose_y: float</dt><dd><p>Storage the y coordinate of the goal</p>
+</dd>
+</dl>
+</section>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="scripts.info_navigation_srv.read_info_nav">
+<span class="sig-prename descclassname"><span class="pre">scripts.info_navigation_srv.</span></span><span class="sig-name descname"><span class="pre">read_info_nav</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">info</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/scripts/info_navigation_srv.html#read_info_nav"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#scripts.info_navigation_srv.read_info_nav" title="Permalink to this definition"></a></dt>
+<dd><p>Callback of the subscriber which subscribe to the topic /custom_message</p>
+<section id="id8">
+<h2>Parameters:<a class="headerlink" href="#id8" title="Permalink to this heading"></a></h2>
+<dl class="simple">
+<dt>real_pose_x: float</dt><dd><p>Storage the current x coordinate of the robot position</p>
+</dd>
+<dt>real_pose_y: float</dt><dd><p>Storage the current y coordinate of the robot position</p>
+</dd>
+<dt>real_linear_vel: float</dt><dd><p>Storage the current linear velocity of the robot</p>
+</dd>
+<dt>real_angular_vel: float</dt><dd><p>Storage the current angular velocity of the robot</p>
+</dd>
+<dt>velocity_array: list</dt><dd><p>Create linear velocity array</p>
+</dd>
+</dl>
+</section>
+</dd></dl>
+
+</section>
+<section id="module-scripts.last_target_clt">
+<span id="last-target-clt-module"></span><h1>last_target_clt Module<a class="headerlink" href="#module-scripts.last_target_clt" title="Permalink to this heading"></a></h1>
+<dl class="py function">
+<dt class="sig sig-object py" id="scripts.last_target_clt.position_client">
+<span class="sig-prename descclassname"><span class="pre">scripts.last_target_clt.</span></span><span class="sig-name descname"><span class="pre">position_client</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/scripts/last_target_clt.html#position_client"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#scripts.last_target_clt.position_client" title="Permalink to this definition"></a></dt>
+<dd><p>Main of the client that when is executed call the service which retrieve the last goal selected</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>response.x_res</strong> (<em>float</em>) – Contain the information about the x coordinate of the last goal selected</p></li>
+<li><p><strong>response.y_res</strong> (<em>float</em>) – Contain the information about the y coordinate of the last goal selected</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+<section id="module-scripts.last_target_srv">
+<span id="last-target-srv-module"></span><h1>last_target_srv Module<a class="headerlink" href="#module-scripts.last_target_srv" title="Permalink to this heading"></a></h1>
+<dl class="py function">
+<dt class="sig sig-object py" id="scripts.last_target_srv.get_pose">
+<span class="sig-prename descclassname"><span class="pre">scripts.last_target_srv.</span></span><span class="sig-name descname"><span class="pre">get_pose</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">req</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/scripts/last_target_srv.html#get_pose"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#scripts.last_target_srv.get_pose" title="Permalink to this definition"></a></dt>
+<dd><p>Callback of my service which retrive the information requested about the last goal previously sent</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>req.x</strong> (<em>float</em>) – Contain the information of the previously x goal coordinate</p></li>
+<li><p><strong>req.y</strong> (<em>float</em>) – Contain the information of the previously y goal coordinate</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="scripts.last_target_srv.position_server">
+<span class="sig-prename descclassname"><span class="pre">scripts.last_target_srv.</span></span><span class="sig-name descname"><span class="pre">position_server</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/scripts/last_target_srv.html#position_server"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#scripts.last_target_srv.position_server" title="Permalink to this definition"></a></dt>
+<dd><p>Main function of my service. The goal is to retrieve the information about the last goal chosen by user</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="scripts.last_target_srv.read_last_goal">
+<span class="sig-prename descclassname"><span class="pre">scripts.last_target_srv.</span></span><span class="sig-name descname"><span class="pre">read_last_goal</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">goal</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/scripts/last_target_srv.html#read_last_goal"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#scripts.last_target_srv.read_last_goal" title="Permalink to this definition"></a></dt>
+<dd><p>Allow to get information about the last goal selected</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>x</strong> (<em>float</em>) – Storage the information of the x coordinate subscribed by the topic /reaching_goal/goal</p></li>
+<li><p><strong>y</strong> (<em>float</em>) – Storage the information of the y coordinate subscribed by the topic /reaching_goal/goal</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2024, Luca Cornia.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

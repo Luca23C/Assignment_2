@@ -1,0 +1,57 @@
+.. assignment_2_2023 documentation master file, created by
+   sphinx-quickstart on Thu Feb 29 13:10:41 2024.
+   You can adapt this file completely to your liking, but it should at least
+   contain the root `toctree` directive.
+
+Welcome to assignment_2_2023's documentation!
+=============================================
+
+.. toctree::
+   :maxdepth: 2
+   :caption: Contents:
+
+
+
+Indices and tables
+==================
+
+* :ref:`genindex`
+* :ref:`modindex`
+* :ref:`search`
+
+
+assignment_2_2023 documentation!
+********************************
+
+This is the documentation of the assignment_2_2023 package!
+
+
+bug_ac Module
+================================
+
+.. automodule:: scripts.bug_ac
+   :members:
+   
+info_navigation_clt Module
+================================
+
+.. automodule:: scripts.info_navigation_clt
+   :members:
+   
+info_navigation_srv Module
+================================
+
+.. automodule:: scripts.info_navigation_srv
+   :members:
+   
+last_target_clt Module
+================================
+
+.. automodule:: scripts.last_target_clt
+   :members:
+   
+last_target_srv Module
+================================
+
+.. automodule:: scripts.last_target_srv
+   :members:
