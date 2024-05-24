@@ -3,6 +3,7 @@
 The documentation of this assignment can be found at the following link:   
 
 https://luca23c.github.io/assignment_2_2023/
+---
 
 The following picture shows the **environment** of this assignment:
 
