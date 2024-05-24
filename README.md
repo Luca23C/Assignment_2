@@ -1,5 +1,8 @@
 # Assignment 2 - Robot Navigation
 
+The documentation of this assignment can be found at the following link:
+https://luca23c.github.io/assignment_2_2023/
+
 The following picture shows the **environment** of this assignment:
 
 <img src="https://github.com/Luca23C/Assignment_2/assets/97911589/10d43c3a-4280-4938-a9a7-1e94e7b9b02a" width="778" height="435">
